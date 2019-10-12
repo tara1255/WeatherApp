@@ -4,6 +4,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,8 +64,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 is ResponseState.OnFailed -> {
                     progressBar.visibility = View.GONE
+                    Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_LONG).show()
                 }
                 is ResponseState.OnResponse -> {
+                    pb_weather.visibility = View.GONE
+                    rv_day.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
                 }
             }
