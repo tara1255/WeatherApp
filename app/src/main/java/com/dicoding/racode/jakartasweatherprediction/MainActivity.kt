@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         })
 
         mainViewModel.responseSate.observe(this, Observer {
-            srl_data.isRefreshing = false
             when (it) {
                 is ResponseState.Requesting -> {
                     progressBar.visibility = View.VISIBLE
@@ -69,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                 }
             }
+            srl_data.isRefreshing = false
         })
 
         mainViewModel.cityResult.observe(this, Observer {

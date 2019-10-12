@@ -1,7 +1,6 @@
 package com.dicoding.racode.jakartasweatherprediction.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,11 +24,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application), K
     private val mDb: DatabaseWeather by inject()
 
     val responseSate = MutableLiveData<ResponseState>()
-    val cityResult: LiveData<CityTable> = mDb.noteDao().loadCityLiveData()
+    val cityResult: LiveData<CityTable> = mDb.cityDao().loadCityLiveData()
     val weatherResult: LiveData<List<WeatherTable>> = mDb.weatherDao().loadAllWeatherLiveData().apply {
         observeForever {
-            val listDay = it.groupBy {
-                val ms = it.time
+            val listDay = it.groupBy { itDay ->
+                val ms = itDay.time
                 ms.toDate("EEE, dd MMM yyy")
             }
             listDataDay.value = listDay
@@ -37,9 +36,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application), K
     }
     val listDataDay = MutableLiveData<Map<String, List<WeatherTable>>>()
 
-    private fun saveCity(city: City) {
+    fun saveCity(city: City) {
         val cityTable = CityTable(id = city.id, name = city.name)
-        mDb.noteDao().insertCity(cityTable)
+        mDb.cityDao().insertCity(cityTable)
     }
     private fun saveWeatherList(list: List<Listt>) {
 
@@ -72,6 +71,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application), K
             }
         }
     }
+
+
 }
 
 sealed class ResponseState {
