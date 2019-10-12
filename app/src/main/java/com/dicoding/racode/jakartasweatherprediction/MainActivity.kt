@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 is ResponseState.OnFailed -> {
                     progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Please check your internet connection for the latest data updates", Toast.LENGTH_LONG).show()
                 }
                 is ResponseState.OnResponse -> {
                     pb_weather.visibility = View.GONE
@@ -85,6 +85,9 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.weatherResult.observe(this, Observer {
             if (it != null && !it.isNullOrEmpty()) {
 
+                pb_weather.visibility = View.GONE
+                rv_day.visibility = View.VISIBLE
+
                 TransitionManager.beginDelayedTransition(constraintLayout)
 
                 val date = it[0].time
@@ -104,8 +107,6 @@ class MainActivity : AppCompatActivity() {
                         .load(weatherIcon)
                         .into(iv_weather)
                 }
-
-
 
                 val temperature = it[0].temp
                 tv_temperature.text = temperature.toString().plus("°")
