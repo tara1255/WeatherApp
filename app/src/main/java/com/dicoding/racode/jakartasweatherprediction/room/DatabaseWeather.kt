@@ -15,7 +15,7 @@ import com.dicoding.racode.jakartasweatherprediction.utils.Constant
     exportSchema = false
 )
 abstract class DatabaseWeather : RoomDatabase() {
-    abstract fun noteDao(): CityDao
+    abstract fun cityDao(): CityDao
     abstract fun weatherDao(): WeatherDao
 
     companion object {

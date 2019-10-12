@@ -7,5 +7,5 @@ import com.dicoding.racode.jakartasweatherprediction.utils.Constant
 @Entity(
     tableName = Constant.Table.CITY
 )
-class CityTable(@PrimaryKey val id: Int,
+data class CityTable(@PrimaryKey val id: Int,
                 val name: String)

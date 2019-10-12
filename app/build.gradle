@@ -30,10 +30,7 @@ android {
     }
     buildTypes {
         release {
-            debuggable false
-            shrinkResources true
-            minifyEnabled true
-            useProguard true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -71,4 +68,5 @@ dependencies {
     // Android Room
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     kapt 'android.arch.persistence.room:compiler:1.1.1'
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
 }

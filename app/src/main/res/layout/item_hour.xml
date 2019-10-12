@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
+    <com.dicoding.racode.jakartasweatherprediction.CustomTextView
         android:id="@+id/tv_hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_hour"
         app:srcCompat="@drawable/ic_icon___cloud_drizzle" />
 
-    <TextView
+    <com.dicoding.racode.jakartasweatherprediction.CustomTextView
         android:id="@+id/tv_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

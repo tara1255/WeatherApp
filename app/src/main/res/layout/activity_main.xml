@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Mampang Prapatan"
+                android:text="@string/mampang_prapatan"
                 android:textColor="#FFF"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -42,19 +42,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Senin, 1 Januari 2020"
+                android:text="@string/senin_1_januari_2020"
                 android:textColor="#FFF"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_city" />
 
-            <TextView
+            <com.dicoding.racode.jakartasweatherprediction.CustomTextView
                 android:id="@+id/tv_temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="20°"
+                android:text="@string/_20"
                 android:textColor="#FFF"
                 android:textSize="80sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,12 +82,12 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_icon___cloud_cloudy" />
 
-                <TextView
+                <com.dicoding.racode.jakartasweatherprediction.CustomTextView
                     android:id="@+id/tv_weather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Berawan"
+                    android:text="@string/berawan"
                     android:textColor="#FFF"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -111,31 +111,40 @@
             android:indeterminate="true"
             android:indeterminateTint="@color/colorAccent"
             android:indeterminateTintMode="src_atop"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/srl_data" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/srl_data">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_day"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#FFF"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/srl_data">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_day" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_day"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/item_day" />
+        <ProgressBar
+            android:id="@+id/pb_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
