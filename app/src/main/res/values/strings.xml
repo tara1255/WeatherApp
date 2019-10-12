@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">JakartasWeatherPrediction</string>
+    <string name="_18">18°</string>
+    <string name="selasa">Selasa</string>
+    <string name="_10pm">10PM</string>
+</resources>
