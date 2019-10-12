@@ -1,8 +1,6 @@
 package com.dicoding.racode.jakartasweatherprediction
 
-import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -64,7 +62,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 is ResponseState.OnFailed -> {
                     progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Please check your internet connection for the latest data updates", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this,
+                        "Please check your internet connection for the latest data updates",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 is ResponseState.OnResponse -> {
                     pb_weather.visibility = View.GONE
