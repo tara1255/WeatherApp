@@ -25,27 +25,39 @@ class MainViewModel(application: Application) : AndroidViewModel(application), K
 
     val responseSate = MutableLiveData<ResponseState>()
     val cityResult: LiveData<CityTable> = mDb.cityDao().loadCityLiveData()
-    val weatherResult: LiveData<List<WeatherTable>> = mDb.weatherDao().loadAllWeatherLiveData().apply {
-        observeForever {
-            val listDay = it.groupBy { itDay ->
-                val ms = itDay.time
-                ms.toDate("EEE, dd MMM yyy")
+    val weatherResult: LiveData<List<WeatherTable>> =
+        mDb.weatherDao().loadAllWeatherLiveData().apply {
+            observeForever {
+                val listDay = it.groupBy { itDay ->
+                    val ms = itDay.time
+                    ms.toDate("EEE, dd MMM yyy")
+                }
+                listDataDay.value = listDay
             }
-            listDataDay.value = listDay
         }
-    }
     val listDataDay = MutableLiveData<Map<String, List<WeatherTable>>>()
 
-    fun saveCity(city: City) {
+    private fun saveCity(city: City) {
         val cityTable = CityTable(id = city.id, name = city.name)
+        mDb.cityDao().deleteCityAll()
         mDb.cityDao().insertCity(cityTable)
     }
+
     private fun saveWeatherList(list: List<Listt>) {
 
         val listWeather: ArrayList<WeatherTable> = arrayListOf()
         list.forEach {
-            listWeather.add(WeatherTable(id = it.dt, main = it.weather[0].main, mainDesc = it.weather[0].description, time = it.dt, temp = it.main?.temp))
+            listWeather.add(
+                WeatherTable(
+                    id = it.dt,
+                    main = it.weather[0].main,
+                    mainDesc = it.weather[0].description,
+                    time = it.dt,
+                    temp = it.main?.temp
+                )
+            )
         }
+        mDb.weatherDao().deleteWeatherAll()
         mDb.weatherDao().insertWeather(listWeather)
     }
 
